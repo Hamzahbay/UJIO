@@ -1,0 +1,57 @@
+
+.navbar {
+  background: url('../img/bg_login.png');
+}
+
+.search {
+  border: none;
+  background-color: #f5f5f5;
+  margin-left: 0.5rem;
+  outline: none;
+}
+
+.btn-filter {
+  width: 10rem;
+}
+
+.form-tambah {
+  border-radius: 10rem;
+}
+
+.search-box {
+  background-color: #f5f5f5;
+  padding: 0.3rem;
+  border-radius: 30rem;
+}
+
+.profil img {
+  max-width: 40px;
+  border-radius: 50%;
+}
+
+.container-tampilNilai {
+  background-color: lightgreen;
+  font-size: 20px;
+  border-radius: 8px;
+}
+
+.btn-save {
+  background-color: lightgray;
+}
+
+footer{
+  left: 0;
+  bottom: 0;
+  height: 5rem;
+  margin-top: 12rem;
+  background-color: whitesmoke;
+}
+@media only screen and (max-width: 768px) {
+  .btn-filter {
+    width: 100%;
+  }
+  .btn-tambah {
+    width: 100%;
+  }
+}
+

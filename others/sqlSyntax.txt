@@ -1,0 +1,188 @@
++-----------------------+
+| Tables_in_client_ujio |
++-----------------------+
+| admin                 |
+| guru                  |
+| jadwal                |
+| jurusan               |
+| matapelajaran         |
+| siswa                 |
+| ujian                 |
++-----------------------+
+
+- create database client_ujio
+- use client_ujio
+
+admin
+create table admin(
+     id int(50) primary key not null,
+     nama varchar(144) not null,
+     password varchar(144) not null,
+     userKey varchar(50)
+     );
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int(50)     | NO   | PRI | NULL    |       |
+| nama     | varchar(144)| NO   |     | NULL    |       |
+| password | varchar(144)| NO   |     | NULL    |       |
+| userKey  | varchar(72) | NO   | UNI | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+isi admin = insert into admin value(081230, "admin123", "121212", "opq123");
+
+
+siswa
+create table siswa(
+     id int(20) not null primary key,
+     nama varchar(144) not null,
+     nis char(30) not null,
+     password varchar(144) not null,
+     kelas char(10) not null,
+     jurusan char(15) not null,
+     kodeKelas char(5) not null
+     );
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int(20)     | NO   | PRI | NULL    |       |
+| nama      | varchar(40) | NO   |     | NULL    |       |
+| nis       | char(30)    | NO   |     | NULL    |       |
+| password  | varchar(144)| NO   |     | NULL    |       |
+| kelas     | char(10)    | NO   |     | NULL    |       |
+| jurusan   | char(15)    | NO   |     | NULL    |       |
+| kodeKelas | char(5)     | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+guru
+create table guru(
+     id int(50) not null primary key,
+     nama varchar(144) not null,
+     nip char(40) not null,
+     tempatLahir varchar(30),
+     tanggalLahir varchar(30),
+     agama varchar(50), tlp char(20),
+     email varchar(50), alamat text
+     );
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| id           | int(50)     | NO   | PRI | NULL    |       |
+| nama         | varchar(144)| YES  |     | NULL    |       |
+| nip          | char(40)    | NO   |     | NULL    |       |
+| tempatLahir  | varchar(30) | YES  |     | NULL    |       |
+| tanggalLahir | varchar(30) | YES  |     | NULL    |       |
+| agama        | varchar(50) | YES  |     | NULL    |       |
+| tlp          | char(20)    | YES  |     | NULL    |       |
+| email        | varchar(50) | YES  |     | NULL    |       |
+| alamat       | text        | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+matapelajaran
+create table mataPelajaran(
+     id int(50) not null primary key,
+     nama varchar(144) not null,
+     kode varchar(50) not null,
+     jurusan json not null check(JSON_VALID(jurusan))
+     );
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int(20)     | NO   | PRI | NULL    |       |
+| nama    | varchar(40) | NO   |     | NULL    |       |
+| kode    | varchar(20) | NO   |     | NULL    |       |
+| jurusan | longtext    | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
+jurusan
+create table jurusan(
+     id int(50) not null primary key,
+     nama varchar(144) not null,
+     kode varchar(50) not null
+     );
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int(20)     | NO   | PRI | NULL    |       |
+| nama  | varchar(144)| NO   |     | NULL    |       |
+| kode  | varchar(20) | NO   |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+
+jadwal
+create table jadwal(
+     id int(50) not null primary key,
+     nilai varchar(50) not null,
+     kodeMapel varchar(50) not null,
+     paket json not null check(JSON_VALID(paket)),
+     tanggal varchar(50) not null,
+     kelas char(10) not null,
+     jam varchar(50) not null
+     );
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| id        | int(50)     | NO   | PRI | NULL    |       |
+| kodeMapel | varchar(50) | NO   |     | NULL    |       |
+| paket     | longtext    | NO   |     | NULL    |       |
+| tanggal   | varchar(50) | NO   |     | NULL    |       |
+| jam       | varchar(50) | NO   |     | NULL    |       |
+| kelas     | char(10)    | NO   |     | NULL    |       |
+| nilai     | varchar(50) | NO   |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+ujian
+create table ujian(
+     id int(50) not null primary key,
+     kodeJadwal varchar(50) not null,
+     kodeSoal json not null check(JSON_VALID(kodeSoal)),
+     ujian json not null check(JSON_VALID(ujian)), no decimal(10, 0) not null
+     );
++------------+---------------+------+-----+---------+-------+
+| Field      | Type          | Null | Key | Default | Extra |
++------------+---------------+------+-----+---------+-------+
+| id         | int(50)       | NO   | PRI | NULL    |       |
+| kodeJadwal | varchar(50)   | NO   |     | NULL    |       |
+| kodeSoal   | longtext      | NO   |     | NULL    |       |
+| ujian      | longtext      | NO   |     | NULL    |       |
+| no         | decimal(10,0) | NO   |     | NULL    |       |
++------------+---------------+------+-----+---------+-------+
+value = 
+        [{"kodeSoal": "", "soal": {"no": "", "tulisan": "", "gambar": ""}, "jawaban": [{"tulisan": "", "gambar": "", "status": "", "kode" : ""}]}]
+
+
+kelas
+create table kelas(
+     id int(50) primary key not null,
+     kelas char(10) not null,
+     jurusan json not null check(JSON_VALID(jurusan)),
+     tingkat varchar(50) not null);
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| id      | int(20)     | NO   | PRI | NULL    |       |
+| kelas   | char(10)    | NO   |     | NULL    |       |
+| jurusan | longtext    | NO   |     | NULL    |       |
+| tingkat | varchar(10) | NO   |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
+
+nilai
+create table nilai(id int(20), nis char(30), kodeJadwal int(20), kodeUjian int(20), kodeSoal char(20), jumlahSoal decimal(10,0), jumlahBenar decimal(10,0));
+
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| id          | int(20)       | YES  |     | NULL    |       |
+| nis         | char(30)      | YES  |     | NULL    |       |
+| kodeJadwal  | int(20)       | YES  |     | NULL    |       |
+| kodeUjian   | int(20)       | YES  |     | NULL    |       |
+| kodeSoal    | char(20)      | YES  |     | NULL    |       |
+| jumlahSoal  | decimal(10,0) | YES  |     | NULL    |       |
+| jumlahBenar | decimal(10,0) | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+
+
+
+link admin:  - /admin/change-profile?role=name&value=helloworld
+             - /admin/change-profile?role=password&value=helloworld
+             - /admin/change-profile?role=userkey&value=helloworld

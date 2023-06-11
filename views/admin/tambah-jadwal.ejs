@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="../../assets/css/tambah-ujian.css" />
+  <script src="https://kit.fontawesome.com/66d4c07337.js" crossorigin="anonymous"></script>
+  <!-- Datepicker -->
+  <!--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script> -->
+  <title>Document</title>
+</head>
+
+<body>
+  <style>
+    .selected {
+      background-color: cornflowerblue;
+      color: white;
+    }
+  </style>
+  <!-- Navbar -->
+  <!-- <nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <div class="row justify-content-center align-items-center">
+            <div class="col">
+              <img src="../../assets/img/logo.png" alt="" width="60px" height="auto" class="align-text-top" />
+            </div>
+            <div class="col">
+              <div class="text">Sistem Ujian Online</div>
+              <div class="text">SMKN 4 MALANG</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </nav> -->
+  <!-- /Navbar -->
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <div class="row justify-content-center align-items-center">
+          <div class="col">
+            <img src="../../assets/img/logo.png" alt="" width="60px" height="auto" class="align-text-top" />
+          </div>
+          <div class="col">
+            <div class="text">Sistem Ujian Online</div>
+            <div class="text">SMKN 4 MALANG</div>
+          </div>
+        </div>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse text-center navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/admin/tambah-jurusan?attribute=all">Data Jurusan</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/admin/tambah-kelas?attribute=all">Data Kelas</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/admin/tambah-mapel?attribute=all">Data Mapel</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/admin/siswa/data?attribute=all">Data Siswa</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="/admin/ujian/jadwal?attribute=all">Data Ujian</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="/admin/guru/data?attribute=all">Data Nilai</a>
+          </li>
+
+          <li class="nav-item ps-3 pe-3">
+            <div class="dropstart profil">
+              <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="../../assets/img/default.png" alt="" /> </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item disabled" href="#">Profile</a></li>
+                <li><a class="dropdown-item" href="/log/out">Logout</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- Akhir Navbar -->
+  <!-- Content -->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-4 form-ujian">
+        <div class="col text-dark">
+          <h2>Tambah Jadwal ujian</h2>
+        </div>
+        <div class="col">
+          <form method="post" action="/admin/ujian/jadwal?attribute=<%= selected %>">
+            <div class="mb-3">
+              <%- include('./../partials/message.ejs') %>
+            </div>
+            <div class="mb-3">
+              <label for="nis" class="form-label">Mata Pelajaran</label>
+              <div class="input-group">
+                <select required name="mapel" id="mapel" class="form-control" data-mapel="<%= val.mapel %>">
+                  <option value="" hidden>Pilih Mata Pelajaran</option>
+                  <% data.res.forEach(x => { %>
+                    <option value="<%= x.kode %>"><%= x.nama %></option>
+                  <% }) %>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="tgl" class="form-label">Tanggal</label>
+              <div class="input-group">
+                <input type="date" id="tgl" required value="<%= val.tanggal %>" name="tanggal" class="form-control" placeholder="" required />
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="tgl" class="form-label">Jam</label>
+              <div class="input-group">
+                <input type="time" value="<%= val.jam.split(' - ')[0] %>" name="waktuMulai" id="waktuMulai" class="form-control" required>
+                <input type="time" value="<%= val.jam.split(' - ')[1] %>" name="waktuSelesai" id="waktuSelesai" class="form-control" required>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="kelas" class="form-label">Kelas</label>
+              <div class="input-group">
+                <select required name="kelas" class="form-control" id="kelas" data-kelas="<%= val.kelas %>">
+                  <option value="" hidden>Pilih Kelas</option>
+                  <option value="X">X</option>
+                  <option value="XI">XI</option>
+                  <option value="XII">XII</option>
+                  <option value="XIII">XIII</option>
+                </select>
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="pkt" class="form-label">Paket Soal</label>
+              <div class="input-group">
+                <input type="text" value="<%= val.paket %>" required name="paket" class="form-control" id="pkt" />
+              </div>
+              <small>Batasi tiap paket dengan tanda koma( , )</small>
+            </div>
+            <button href="#" type="submit" class="btn btn-primary form-control">Tambah</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-md-8 mt-5 table-responsive text-center">
+        <table class="table bg-red" style="vertical-align: middle">
+          <thead style="background: #0d6efd; color: white">
+            <tr style="white-space: nowrap;">
+              <th>Mapel</th>
+              <th>Tanggal</th>
+              <th>Kelas</th>
+              <th>Jam</th>
+              <th>Tambah Soal</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="body-list-jurusan" data-selected="<%= selected %>">
+            <% let i = 0 %>
+            <% data.res.forEach(y => { %>
+              <% data.res1.forEach(x => { %>
+                <% if( y.kode == x.kodeMapel ) { %>
+                  <tr class="obj" style="cursor: pointer;" data-id="<%= x.id %>" data-class="obj-<%= i++ %>" data-sort="<%= x.tanggal %>">
+                    <td><%= y.nama %></td>
+                    <td><%= x.tanggal %></td>
+                    <td><%= x.kelas %></td>
+                    <td><%= x.jam %></td>
+                    <td class="forBtn">
+                      <!-- <a class="btn btn-primary" href="#" role="button">Edit </a> -->
+                      <!-- <button type="button" class="btn btn-success">Uploaded</button> -->
+                      <% data.res2.forEach(z => { %>
+                        <% if( x.id == z.kodeJadwal ) { %>
+                          <a class="btn btn-success ed" href="/admin/ujian/edit?attribute=all&jadwal=<%= x.id %>" role="button"><i class='fas fa-edit'></i></a>
+                        <% } else { %>
+                        <% } %>
+                      <% }) %>
+                      <a class="btn btn-primary add" href="/admin/ujian/tambah?attribute=all&jadwal=<%= x.id %>" role="button"><i class='fas fa-plus'></i></a>
+                      <a class="btn btn-primary" href="/admin/ujian/jadwal?attribute=<%= x.id %>" role="button"><i class='fas fa-pen'></i></a>
+                      <a class="btn btn-danger del-jurusan" data-href="/admin/ujian/jadwal?attribute=<%= x.id %>&del=jadwal" role="button"><i class='fas fa-trash-alt'></i></a>
+                    </td>
+                    <td class="close-selected" style="text-align: right; width: 2%;"></td>
+                  </tr>
+                  <% } %>
+              <% }) %>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- /Content -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0"
+    crossorigin="anonymous"></script>
+
+  <!-- Datepicker -->
+  <script type="text/javascript">
+    // $(function () {
+    //   $('#tgl').datetimepicker({
+    //     format: 'DD-MM-YYYY',
+    //   });
+    // });
+  </script>
+  <script type="text/javascript">
+    // $(function () {
+    //   $('#tgl1').datetimepicker({
+    //     format: 'DD-MM-YYYY',
+    //   });
+    // });
+  </script>
+
+  <footer>
+    <div class="footer mt-5">
+      <div class="container pt-4">
+        Copyright 2022
+      </div>
+    </div>
+  </footer>
+</body>
+
+<script>
+  if( document.querySelector('.table .body-list-jurusan').dataset.selected != '' ) {
+    document.querySelectorAll('.del-jurusan').forEach(x => {
+      x.addEventListener('click', function(e) {
+        let cnf = confirm('Apakah anda yakin?')
+        if( cnf == true ) window.location.href = this.dataset.href
+      })
+    })
+    document.querySelectorAll('.forBtn').forEach(x => {
+      if( x.firstElementChild.classList.contains('ed') ) {
+        x.firstElementChild.nextElementSibling.remove()
+      }
+    })
+    document.querySelectorAll('.table .body-list-jurusan tr').forEach(x => {
+      if( document.querySelector('.table .body-list-jurusan').dataset.selected == x.dataset.id ) {
+        x.classList.add('selected')
+      } else {
+        x.classList.remove('selected')
+      }
+    })
+    if( document.querySelector('.selected') != null ) {
+      document.querySelector('.selected').lastElementChild.innerHTML += `<i style="cursor: pointer;" class="fa fa-close"></i>`
+    }
+  }
+
+  if( document.querySelector('.selected') != null ) {
+    document.querySelector('.selected .fa-close').addEventListener('click', function(e) {
+      window.location.href = '/admin/ujian/jadwal?attribute=all'
+    })
+  }
+
+  if( document.getElementById('mapel').dataset.mapel != '' ) {
+    let jrs = document.getElementById('mapel').dataset.mapel.split(',')
+    document.querySelectorAll('#mapel option').forEach(x => {
+      jrs.forEach(y => {
+        if( x.value == y ) x.setAttribute('selected', '')
+      })
+    })
+  }
+  if( document.getElementById('kelas').dataset.kelas != '' ) {
+    let jrs = document.getElementById('kelas').dataset.kelas.split(',')
+    document.querySelectorAll('#kelas option').forEach(x => {
+      jrs.forEach(y => {
+        if( x.value == y ) x.setAttribute('selected', '')
+      })
+    })
+  }
+
+  if( document.querySelectorAll('.obj') != null ) {
+    let obj = []
+    document.querySelectorAll('.obj').forEach(x => {
+      let alp = x.dataset.sort.split('-')
+      obj.push({ date: alp[0] + '/' + alp[1] + '/' + alp[2], class: x.dataset.class, component: x.outerHTML })
+      x.remove()
+    })
+
+    let sort = obj.sort((a, b) => new Date(a.date) > new Date(b.date))
+    console.log(sort)
+
+    sort.forEach(x => {
+      document.querySelector('.table .body-list-jurusan').innerHTML += x.component
+    })
+
+    document.querySelectorAll('.del-jurusan').forEach(x => {
+      x.addEventListener('click', function(e) {
+        let cnf = confirm('Apakah anda yakin?')
+        if( cnf == true ) window.location.href = this.dataset.href
+      })
+    })
+  }
+</script>
+
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../assets/css/penjelasan.css" />
+    <script src="https://kit.fontawesome.com/66d4c07337.js" crossorigin="anonymous"></script>
+    <title>Mata Pelajaran</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <div class="row justify-content-center align-items-center">
+            <div class="col">
+              <img src="../../assets/img/logo.png" alt="" width="60px" height="auto" class="align-text-top" />
+            </div>
+            <div class="col">
+              <div class="text">Sistem Ujian Online</div>
+              <div class="text">SMKN 4 MALANG</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </nav>
+    <div class="container-fluid cntnr">
+      <div class="row">
+        <div class="col mt-2">
+          <%- include('./../partials/message.ejs') %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="judul">Petunjuk Pemakaian Sistem Ujian Online :</div>
+          <div class="content">
+            1. Login Menggunakan NIS dan password masing masing <br />
+            2. Pilih mata pelajaran yang diujikan sesuai jadwal <br />
+            3. Kerjakan soal dengan seksama dan teliti <br />
+            4. Pastikan seluruh soal telah terjawab <br />
+            5. Teliti kembali Jawaban Anda sebelum ketuk selesai <br />
+            6. Jika dirasa sudah benar dan seluruh kolom jawaban berwarna hijau, silahkan klik selesai untuk mengsubmit jawaban anda
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="judul">Keterangan Warna Jawaban</div>
+          <div class="content mt-3">
+            <div class="row">
+              <div class="col-2">
+                <div class="circle bg-success"></div>
+              </div>
+              <div class="col-10">: Sudah Terjawab</div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-2">
+                <div class="circle bg-warning"></div>
+              </div>
+              <div class="col-10">: Ulangi Jawaban</div>
+            </div>
+
+            <div class="row mt-2">
+              <div class="col-2">
+                <div class="circle bg-danger"></div>
+              </div>
+              <div class="col-10">: Belum terjawab</div>
+            </div>
+
+            <a class="btn btn-primary mt-5" href="/siswa/home" role="button">Lihat Jadwal Ujian</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="line mt-4 mb-3"></div>
+
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="content">
+              Nama &nbsp;: <%= req.nama %> <br />
+              NIS &emsp;&nbsp;: <%= req.nis %> <br />
+              Kelas &nbsp;&nbsp;: <%= req.kelas %> <%= req.jurusan %>-<%= req.kodeKelas %>
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <% res2.forEach(x => { %>
+              <% if( x.kode == res1.kodeMapel ) { %>
+                Mata Pelajaran &emsp;: <%= x.nama %> <br />
+                Jurusan &emsp;&emsp;&emsp;&emsp;: <%= x.jurusan %> <br />
+              <% } %>
+            <% }) %>
+            Kode Soal&emsp;&emsp;&emsp;&nbsp;: <%= res1.paket %> <br />
+            Waktu &emsp;&emsp;&emsp;&emsp;&ensp;: <%= res1.jam %><br />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col d-flex justify-content-center">
+            <a role="button" class="btn btn-primary mt-5 ms-5" href="/siswa/ujian/<%= params.id %>/start">Mulai Ujian</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <% res3.forEach(x => { %>
+      <% if( x.kodeJadwal == params.id && x.nis == req.nis ) { %>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col mt-3">
+            <div class="alert alert-danger text-center" role="alert">Anda telah mensubmit ujian</div>
+          </div>
+        </div>
+        <% if( res1.id == params.id && res1.nilai == 'tampilkan' ) { %>
+          <div class="row">
+            <div class="col">
+              <div class="card">
+                <div class="card-header">
+                  Nilai ujian anda
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title"><%= (parseInt(x.jumlahBenar) / parseInt(x.jumlahSoal)) * 100 %></h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% } %>
+        <div class="row">
+          <div class="col mt-2">
+            <a class="btn btn-primary" href="/siswa/home" role="button" style="width: 100%;">Lihat Jadwal Ujian</a>
+          </div>
+        </div>
+      </div>
+      <script>
+        document.querySelector('.cntnr').remove()
+      </script>
+      <% } %>
+    <% }) %>
+    
+    <!-- <footer>
+      <div class="footer mt-5">
+        <div class="container pt-4">
+          Copyright 2022
+        </div>
+      </div>
+    </footer> -->
+  </body>
+</html>

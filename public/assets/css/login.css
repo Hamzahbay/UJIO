@@ -1,0 +1,23 @@
+.jumbotron {
+  padding: 0rem 0 11rem 0;
+  background: url('../img/bg_login.png');
+  color: white;
+  font-size: 19px;
+}
+.logo {
+  max-width: 14rem;
+}
+.ujio {
+  max-width: 15rem;
+}
+
+footer{
+  left: 0;
+  bottom: 0;
+  height: 5rem;
+  background-color: whitesmoke;
+}
+
+@media only screen and (min-width: 1200px) {
+  
+}

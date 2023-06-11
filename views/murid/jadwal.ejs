@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/css/jadwal.css" />
+    <script src="https://kit.fontawesome.com/66d4c07337.js" crossorigin="anonymous"></script>
+    <title>Jadwal Pelajaran</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <div class="row justify-content-center align-items-center">
+            <div class="col">
+              <img src="../assets/img/logo.png" alt="" width="60px" height="auto" class="align-text-top" />
+            </div>
+            <div class="col">
+              <div class="text">Sistem Ujian Online</div>
+              <div class="text">SMKN 4 MALANG</div>
+            </div>
+          </div>
+        </a>
+        <a href="/log/out" style="float: right; color: white; text-decoration: none; margin-right: 30px;">Logout</a>
+      </div>
+    </nav>
+    <!-- /Navbar -->
+    <!-- Content -->
+
+    <div class="container">
+      <!-- <div class="row mt-3">
+        <div class="col text-center cara-ujian fs-4">
+          <p>Baca cara ujian <a href="">disini!</a></p>
+        </div>
+      </div> -->
+      <!-- <div class="row mt-3">
+        <div class="col text-center fs-4">
+          <p style="color: red">Pastikan internet yang anda gunakan stabil!</p>
+        </div>
+      </div> -->
+      <div class="row">
+        <div class="col mt-4" style="font-size: x-large;">
+          <center>
+            Jadwal Ujian Minggu ini
+          </center>
+        </div>
+      </div>
+      <% if( req.password == '' ) { %>
+        <div class="row justify-content-center">
+          <a class="btn btn-primary mt-4" href="/siswa/kartu-ujian" style="width:25%; padding: 1%;" role="button">Buat password</a></div>
+        </div>
+      <% } %>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row mt-4">
+        <div class="col-md-10 offset-md-1">
+          <div class="table-responsive text-center">
+            <table class="table table-bordered" style="vertical-align: middle">
+              <thead class="" style="background-color: #0d6efd; color: white">
+                <tr style="white-space: nowrap">
+                  <th scope="col">Hari, tanggal</th>
+                  <th scope="col">Mata Pelajaran</th>
+                  <th scope="col">Waktu</th>
+                  <th scope="col">Mulai ujian</th>
+                </tr>
+              </thead>
+              <tbody class="body-list-jurusan">
+              <% let i = 0 %>
+              <% data.week.forEach(x => { %>
+              <% data.res1.forEach(y => { %>
+                <% if( x.data.kodeMapel == y.kode ) { %>
+                <% if( x.data.kelas == req.kelas ) { %>
+                <% if( typeof y.jurusan != 'string' ) { %>
+                  <% y.jurusan.forEach(z => { %>
+                    <% if( z == req.jurusan ) { %>
+                    <tr class="obj" data-sort="<%= x.data.tanggal %>" data-class="<%= i++ %>">
+                      <td rowspan=""><span class="hari"><%= x.hari %>, <%= x.data.tanggal %></span></td>
+                      <td><%= y.nama %></td>
+                      <td><%= x.data.jam %></td>
+                      <td><a href="/siswa/ujian/<%= x.data.id %>">Klik disini</a></td>
+                    </tr>
+                    <% } %>
+                  <% }) %>
+                <% } %>
+                <% if( typeof y.jurusan == 'string' ) { %>
+                <% if( y.jurusan == req.jurusan ) { %>
+                <tr class="obj" data-sort="<%= x.data.tanggal %>" data-class="<%= i++ %>">
+                  <td rowspan=""><span class="hari"><%= x.hari %>, <%= x.data.tanggal %></span></td>
+                  <td><%= y.nama %></td>
+                  <td><%= x.data.jam %></td>
+                  <td><a href="/siswa/ujian/<%= x.data.id %>">Klik disini</a></td>
+                </tr>
+                <% } %>
+                <% } %>
+                <% } %>
+                <% } %>
+              <% }) %>
+              <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /Content -->
+
+    <!-- <footer>
+      <div class="footer mt-5">
+        <div class="container pt-4">
+          Copyright 2022
+        </div>
+      </div>
+    </footer> -->
+  </body>
+  <script>
+    if( document.querySelectorAll('.obj') != null ) {
+    let obj = []
+    document.querySelectorAll('.obj').forEach(x => {
+      let alp = x.dataset.sort.split('-')
+      obj.push({ date: alp[0] + '/' + alp[1] + '/' + alp[2], class: x.dataset.class, component: x.outerHTML })
+      x.remove()
+    })
+
+    let sort = obj.sort((a, b) => new Date(a.date) > new Date(b.date))
+    console.log(sort)
+
+    sort.forEach(x => {
+      document.querySelector('.table .body-list-jurusan').innerHTML += x.component
+    })
+
+    // let ind = 1
+    // document.querySelectorAll('.obj').forEach(x => {
+    //   if( x.previousElementSibling != null ) {
+    //     if( x.previousElementSibling.dataset.sort == x.dataset.sort ) {
+    //       ind++
+    //     }
+    //   }
+    // })
+    document.querySelectorAll('.obj').forEach(x => {
+      if( x.previousElementSibling != null ) {
+        if( x.previousElementSibling.dataset.sort == x.dataset.sort ) {
+          x.previousElementSibling.firstElementChild.setAttribute('rowspan', '2')
+          x.firstElementChild.remove()
+        }
+      }
+    })
+  }
+  </script>
+</html>

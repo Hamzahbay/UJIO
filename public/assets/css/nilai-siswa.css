@@ -1,0 +1,28 @@
+.navbar {
+    background: url('../img/bg_login.png');
+}
+
+.text {
+    font-size: 16px;
+}
+
+.search {
+    border: none;
+    background-color: #f5f5f5;
+    margin-left: 0.5rem;
+    outline: none;
+}
+
+.search-box {
+    background-color: #f5f5f5;
+    padding: 0.3rem;
+    border-radius: 30rem;
+}
+
+footer{
+    left: 0;
+    bottom: 0;
+    height: 5rem;
+    background-color: whitesmoke;
+  }
+  

@@ -1,0 +1,16 @@
+.navbar {
+  background: url('../img/bg_login.png');
+}
+.btn-cetak {
+  width: 100%;
+}
+.btn-kembali {
+  width: 100%;
+}
+
+footer{
+  left: 0;
+  bottom: 0;
+  height: 5rem;
+  background-color: whitesmoke;
+}

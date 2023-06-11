@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../assets/css/kartu-ujain.css" />
+    <script src="https://kit.fontawesome.com/66d4c07337.js" crossorigin="anonymous"></script>
+    <title>Jadwal Pelajaran</title>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <div class="row justify-content-center align-items-center">
+            <div class="col">
+              <img src="../assets/img/logo.png" alt="" width="60px" height="auto" class="align-text-top" />
+            </div>
+            <div class="col">
+              <div class="text">Sistem Ujian Online</div>
+              <div class="text">SMKN 4 MALANG</div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row mt-3">
+        <div class="col text-center cara-ujian fs-4">
+          <h4>PERINGATAN!</h4>
+          <p style="color: red">Jangan pernah membagikan password Anda pada siapapun</p>
+        </div>
+      </div>
+      <div class="row mt-5 justify-content-center">
+        <div class="col-lg-6">
+          <div class="col">
+            <%- include('./../partials/message.ejs') %>
+          </div>
+          <div class="card">
+            <div class="card-header text-center">CETAK KARTU UJIAN</div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">Nama</div>
+                <div class="col-1">:</div>
+                <div class="col-7"><%= req.nama %></div>
+              </div>
+              <div class="row">
+                <div class="col-4">Nis</div>
+                <div class="col-1">:</div>
+                <div class="col-7"><%= req.nis %></div>
+              </div>
+              <div class="row">
+                <div class="col-4">Kelas</div>
+                <div class="col-1">:</div>
+                <div class="col-7"><%= req.kelas %> <%= req.jurusan %>-<%= req.kodeKelas %></div>
+              </div>
+              <div class="row">
+                <div class="col-4">Password</div>
+                <div class="col-1">:</div>
+                <% if( req.password == '' ) { %>
+                <div class="col-7"><form action="/siswa/kartu-ujian" method="post" id="buat"><input type="password" name="password" id="password" required></form></div>
+                <% } %>
+                <% if( req.password != '' ) { %>
+                <div class="col-7"><%= req.password %></div>
+                <% } %>
+              </div>
+              <div class="row justify-content-center mt-3">
+                <div class="col-6">
+                  <% if( req.password == '' ) { %>
+                  <div class="btn btn-primary btn-cetak btn-buat">Buat password</div>
+                  <% } %>
+                  <% if( req.password != '' ) { %>
+                    <!-- <a href="/siswa/kartu-ujian?set=cetak" role="button" class="btn btn-primary btn-cetak">Cetak kartu ujian</a> -->
+                  <!-- <div class="btn btn-primary btn-cetak">Cetak kartu ujian</div> -->
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-5 justify-content-center">
+        <div class="col-6">
+          <a href="/siswa/home" class="btn btn-primary btn-kembali">Kembali</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer mt-5">
+        <div class="container pt-4">
+          Copyright 2022
+        </div>
+      </div>
+    </footer>
+  </body>
+  <script>
+    document.querySelector('.btn-buat').addEventListener('click', function(e) {
+      document.getElementById('buat').submit()
+    })
+  </script>
+</html>

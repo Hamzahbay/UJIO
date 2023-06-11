@@ -1,0 +1,87 @@
+.navbar {
+  background: url('../img/bg_login.png');
+}
+.text {
+  font-size: 16px;
+}
+
+.mapel {
+  padding-top: 3rem;
+}
+
+.round {
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+}
+.jawaban {
+  border-radius: 10px;
+  padding-left: 10px;
+}
+
+.card-soal {
+  border-radius: 1rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.card-jawaban {
+  border: 1px solid lightgray;
+  padding-top:0.2rem;
+  padding-bottom: 0.1rem;
+}
+
+.card-nomor {
+  border:3px solid lightgray;
+  padding-top: 0.5rem;
+  padding-bottom: 0.25rem;
+  width: 55px;
+  height: 55px;
+}
+
+footer{
+  left: 0;
+  bottom: 0;
+  height: 5rem;
+  background-color: whitesmoke;
+}
+
+/* Hover */
+
+.card-nomor:hover {
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.row-jawaban:hover .card-jawaban {
+  background-color: #D1D1D1;
+  cursor: pointer;
+  color: black;
+  Font-color: black;
+}
+
+.line {
+  border-top: 3px solid black;
+}
+
+.waktu {
+  font-size: 14px;
+}
+
+.soal-text {
+  font-size: 1.5rem;
+}
+
+@media only screen and (min-width: 708px) {
+  .mapel {
+    padding-top: 8rem;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .jawaban {
+    margin-left: 10px;
+  }
+  .text-soal{
+    margin-left: 10px;
+  }
+}

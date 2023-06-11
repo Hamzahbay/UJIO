@@ -1,0 +1,49 @@
+.navbar {
+  background: url('../img/bg_login.png');
+}
+.text {
+  font-size: 14px;
+}
+.c1 {
+  background-color: #488FB1;
+}
+.c2 {
+  background-color: #008E89;
+}
+.c3 {
+  background-color: #488FB1;
+}
+.c4 {
+  background-color: #008E89;
+}
+.c5 {
+  background-color: #488FB1;
+}
+.c6 {
+  background-color: #008E89;
+}
+.mapel {
+  padding-top: 1rem;
+}
+.card {
+  padding: 15px 0 15px 0;
+  /* font-weight: bold; */
+  font-size: 24px;
+  color:white;
+  text-decoration: none;
+}
+
+footer{
+  left: 0;
+  bottom: 0;
+  height: 5rem;
+  margin-top: 8rem;
+  background-color: whitesmoke;
+}
+
+
+@media only screen and (min-width: 708px) {
+  .mapel {
+    padding-top: 1rem;
+  }
+}

@@ -1,0 +1,41 @@
+.navbar {
+    background: url('../img/bg_login.png');
+}
+
+.text {
+    font-size: 16px;
+}
+
+.judul{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.content{
+    font-size: 18px;
+}
+
+.circle{
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+}
+
+.line {
+    border-top: 3px solid black;
+}
+
+footer{
+    left: 0;
+    bottom: 0;
+    height: 5rem;
+    background-color: whitesmoke;
+  }
+
+  footer{
+    left: 0;
+    bottom: 0;
+    height: 5rem;
+    background-color: whitesmoke;
+  }
+  

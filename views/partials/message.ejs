@@ -1,0 +1,15 @@
+<% if( success_message != '' ) { %>
+    <div class="alert alert-success text-center" role="alert" onclick="(setTimeout(() => this.remove(), 100))"><%= success_message %></div>
+<% } %>
+
+<% if( error_message != '' ) { %>
+    <div class="alert alert-danger text-center" role="alert" onclick="(setTimeout(() => this.remove(), 100))"><%= error_message %></div>
+<% } %>
+
+<% if( warning_message != '' ) { %>
+    <div class="alert alert-warning text-center" role="alert" onclick="(setTimeout(() => this.remove(), 100))"><%= warning_message %></div>
+<% } %>
+
+<% if( error != '' ) { %>
+    <%= //error %>
+<% } %>

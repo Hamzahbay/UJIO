@@ -1,0 +1,30 @@
+:root {
+  /* filter: invert(1) hue-rotate(180deg); */
+}
+.navbar {
+  background: url('../img/bg_login.png');
+  /* filter: invert(1) hue-rotate(180deg); */
+}
+.cara-ujian {
+  background-color: #c5bcfe;
+  padding-top: 10px;
+  /* font-size: 18px; */
+}
+.cara-ujian a {
+  text-decoration: none;
+  color: red;
+}
+.box {
+  background-color: blue;
+}
+.box a {
+  color: white;
+  text-decoration: none;
+}
+
+footer{
+  left: 0;
+  bottom: 0;
+  height: 5rem;
+  background-color: whitesmoke;
+}

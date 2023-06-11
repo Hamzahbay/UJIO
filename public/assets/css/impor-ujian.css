@@ -1,0 +1,34 @@
+.navbar {
+  background: url('../img/bg_login.png');
+}
+
+.text {
+  font-size: 14px;
+}
+
+.container-tampilNilai {
+  background-color: #EEEDDE;
+  font-size: 20px;
+  border-radius: 8px;
+  color:black;
+}
+
+.btn-save {
+  background-color: lightgray;
+}
+
+.profil img {
+  max-width: 40px;
+  border-radius: 50%;
+}
+.alert-danger{
+  
+  margin-top:7px;
+}
+
+footer{
+  left: 0;
+  bottom: 0;
+  height: 5rem;
+  background-color: whitesmoke;
+}

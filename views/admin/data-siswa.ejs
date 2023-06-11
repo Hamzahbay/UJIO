@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../assets/css/data-siswa.css" />
+    <script src="https://kit.fontawesome.com/66d4c07337.js" crossorigin="anonymous"></script>
+    <title>Document</title>
+  </head>
+
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <div class="row justify-content-center align-items-center">
+            <div class="col">
+              <img src="../../assets/img/logo.png" alt="" width="60px" height="auto" class="align-text-top" />
+            </div>
+            <div class="col">
+              <div class="text">Sistem Ujian Online</div>
+              <div class="text">SMKN 4 MALANG</div>
+            </div>
+          </div>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse text-center navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/tambah-jurusan?attribute=all">Data Jurusan</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/tambah-kelas?attribute=all">Data Kelas</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/tambah-mapel?attribute=all">Data Mapel</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/admin/siswa/data?attribute=all">Data Siswa</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/ujian/jadwal?attribute=all">Data Ujian</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="/admin/guru/data?attribute=all">Data Nilai</a>
+            </li>
+            <li class="nav-item ps-3 pe-3">
+              <div class="dropstart profil">
+                <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <img src="../../assets/img/default.png" alt="" /> </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item disabled" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="/log/out">Logout</a></li>
+                </ul>
+              </div>
+            </li>
+
+            <!-- <li class="nav-item">
+              <a class="nav-link" aria-current="page" href="data-guru.html">Data Guru</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="tambah-ujian.html">Data Ujian</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="data-siswa.html">Data Siswa</a>
+            </li>
+            </li>
+            <li class="nav-item ps-3 pe-3">
+              <div class="dropstart profil">
+                <a class="" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> <img src="../../assets/img/default.png" alt="" /> </a>
+
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item disabled" href="#">Profile</a></li>
+                  <li><a class="dropdown-item" href="#">Logout</a></li>
+                </ul>
+              </div>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Akhir Navbar -->
+    <div class="container-fluid">
+      <div class="row mt-5">
+        <div class="col-md-10 offset-md-1">
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <div class="dropdown">
+                <button class="btn-filter btn-primary dropdown-toggle" style="border-radius: 3px; padding: 5px;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Filter</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Nama siswa" aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btn btn-outline-primary" type="button" id="button-addon2">Cari</button>
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <div class="d-grid justify-content-md-end">
+                <a href="/admin/siswa/tambah?manual=true&imp=true">
+                  <button type="button" class="btn-tambah btn-primary mb-3" style="border-radius: 3px; padding: 5px;">Tambah Data Siswa</button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col-md-4">
+              <div class="dropdown">
+                <button class="btn btn-filter btn-primary dropdown-toggle mb-3" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">Filter</button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a class="dropdown-item" href="#">Kelas</a></li>
+                  
+                </ul>
+              </div>
+            </div>
+            
+            <div class="input-group mb-3" style="width:350px;">
+              <input type="text" class="form-control"  aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">Cari</button>
+              </div>
+            </div>
+            
+            <div class="col-md-4 mb-3" style="margin-left:29px;">
+              <div class="d-grid justify-content-md-end">
+                <a href="form-data-siswa.html">
+                  <button type="button" class="btn btn-tambah btn-primary">Tambah Data Siswa</button>
+                </a>
+              </div>
+            </div>
+          </div> -->
+          <div class="table-responsive">
+            <table class="table">
+              <thead class="" style="background-color: #0d6efd;; color: white">
+                <tr style="white-space: nowrap;">
+                  <th scope="col" style="text-align: center; width: 2%;">No</th>
+                  <th scope="col" style="text-align: center;">Nama Siswa</th>
+                  <th scope="col" style="text-align: center;">NIS</th>
+                  <th scope="col" style="width: 10%; text-align: center;">Kelas</th>
+                  <th scope="col" style="width: 20%; text-align: center;">Password</th>
+                </tr>
+              </thead>
+              <tbody>
+                <style>
+                  .obj {
+                    cursor: pointer;
+                    transition: 200ms cubic-bezier(0.215, 0.610, 0.355, 1);
+                  }
+                  .obj:hover {
+                    background-color: #0d6efd;
+                    color: whitesmoke;
+                  }
+                </style>
+                <% let i = 1 %>
+                <% data.forEach(x => { %>
+                    <tr class="obj" data-nis="<%= x.nis %>" data-bs-toggle="modal" data-bs-target="#mdl">
+                      <td><%= i++ %></td>
+                      <td data-oth="<%= x.nama %>"><%= x.nama %></td>
+                      <td data-oth="<%= x.nis %>"><%= x.nis %></td>
+                      <td style="text-align: center;"><%= x.kelas %> <%= x.jurusan %> <%= x.kodeKelas %></td>
+                      <td style="text-align: center;" class="pass"><%= x.password %></td>
+                    </tr>
+                <% }) %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" tabindex="-1" id="mdl">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form method="post" id="formPost">
+              <div class="input-group">
+                <input type="text" name="nama" id="namaForm" class="form-control" placeholder="Nama">
+              </div>
+              <br>
+              <div class="input-group">
+                <input type="text" name="nis" id="nisForm" class="form-control" placeholder="NIS">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" id="saveChanges">Simpan</button>
+          </div>
+        </div>
+      </div>
+    </div>    
+
+    <!-- /Content -->
+    <footer>
+        <div class="footer mt-5">
+          <div class="container pt-4">
+            Copyright 2022
+          </div>
+        </div>
+      </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+  </body>
+  <script>
+    document.querySelectorAll('.pass').forEach(x => {
+      if( x.innerText == '' ) {
+        x.style.color = 'red'
+        x.innerText = 'Belum Dibuat'
+      }
+    })
+
+    if( document.querySelector('.obj') != null ) {
+      document.querySelectorAll('.obj').forEach(x => {
+        x.addEventListener('click', function(e) {
+          document.getElementById('formPost').setAttribute('action', `/admin/siswa/data?nis=${this.dataset.nis}`)
+
+          document.getElementById('namaForm').value = this.firstElementChild.nextElementSibling.dataset.oth
+          document.getElementById('nisForm').value = this.firstElementChild.nextElementSibling.nextElementSibling.dataset.oth
+          
+          document.getElementById('saveChanges').addEventListener('click', e => document.getElementById('formPost').submit())
+        })
+      })
+    }
+
+    // if( document.querySelector('.obj') != null ) {
+    //   document.querySelectorAll('.obj').forEach(x => {
+    //     x.addEventListener('click', function(e) {
+    //       if( typeof e.target.value == "undefined" ) {
+    //         if( this.firstElementChild.nextElementSibling.innerText == '' && this.firstElementChild.nextElementSibling.nextElementSibling.innerText == '' ) {
+    //           this.firstElementChild.nextElementSibling.innerText = this.firstElementChild.nextElementSibling.dataset.oth
+    //           this.firstElementChild.nextElementSibling.nextElementSibling.innerText = this.firstElementChild.nextElementSibling.nextElementSibling.dataset.oth
+    //           return
+    //         }
+    //         for( let  i = 0; i < document.querySelectorAll('.obj').length; i++ )  {
+    //           if( document.querySelectorAll('.obj')[i].firstElementChild.nextElementSibling.innerText == '' && document.querySelectorAll('.obj')[i].firstElementChild.nextElementSibling.nextElementSibling.innerText == '' ) {
+    //             document.querySelectorAll('.obj')[i].firstElementChild.nextElementSibling.innerText = document.querySelectorAll('.obj')[i].firstElementChild.nextElementSibling.dataset.oth
+    //             document.querySelectorAll('.obj')[i].firstElementChild.nextElementSibling.nextElementSibling.innerText = document.querySelectorAll('.obj')[i].firstElementChild.nextElementSibling.nextElementSibling.dataset.oth
+    //           }
+    //         }
+    //         this.firstElementChild.nextElementSibling.innerHTML = `<input type="text" name="nama" id="nama" class="form-control" value="${this.firstElementChild.nextElementSibling.dataset.oth}">`
+    //         this.firstElementChild.nextElementSibling.nextElementSibling.innerHTML = `<input type="text" name="nama" id="nama" class="form-control" value="${this.firstElementChild.nextElementSibling.nextElementSibling.dataset.oth}"><button type="submit" class="btn btn-primary" id="sb">Update</button>`
+    //         document.getElementById('sb').addEventListener('mouseover', function(e) {
+    //           console.log(this.parentElement.parentElement.parentElement.parentElement.parentElement)
+    //         })
+    //       }
+    //     })
+    //   })
+    // }
+  </script>
+</html>

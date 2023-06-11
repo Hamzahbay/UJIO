@@ -1,0 +1,52 @@
+.navbar {
+  background: url('../img/bg_login.png');
+}
+
+.search {
+  border: none;
+  background-color: #f5f5f5;
+  margin-left: 0.5rem;
+  outline: none;
+}
+.search:focus {
+  outline: none;
+}
+
+.form-tambah {
+  border-radius: 10rem;
+}
+
+.search-box {
+  background-color: #f5f5f5;
+  padding: 0.3rem;
+  border-radius: 30rem;
+}
+.profil img {
+  max-width: 40px;
+  border-radius: 50%;
+}
+
+footer{
+  left: 0;
+  bottom: 0;
+  height: 5rem;
+  margin-top: 11rem;
+  background-color: whitesmoke;
+}
+
+@media only screen and (max-width: 767px) {
+  .tmbh-guru {
+    width: 100%;
+  }
+  .tmpt-lahir {
+    margin-bottom: 20px;
+  }
+}
+@media only screen and (max-width: 602px) {
+  .btn-primary {
+   margin-right: 20px;
+  }
+  
+}
+
+
